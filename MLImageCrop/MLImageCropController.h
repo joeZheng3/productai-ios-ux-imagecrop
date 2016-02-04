@@ -27,7 +27,7 @@
 @end
 
 @interface MLImageCropController : UIViewController
-@property (nonatomic, weak) id<MLImageCropControllerDelegate> delegate;
+@property (nonatomic, strong) id<MLImageCropControllerDelegate> delegate;
 
 @property (nonatomic, strong) UIColor *cropBorderColor;
 @property (nonatomic) CGFloat cropBorderWidth;
