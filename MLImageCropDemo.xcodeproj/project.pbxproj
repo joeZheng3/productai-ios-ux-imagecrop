@@ -1,0 +1,336 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BEB74C251C620F11008E8402 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB74C241C620F11008E8402 /* main.m */; };
+		BEB74C281C620F11008E8402 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB74C271C620F11008E8402 /* AppDelegate.m */; };
+		BEB74C2B1C620F11008E8402 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB74C2A1C620F11008E8402 /* ViewController.m */; };
+		BEB74C2E1C620F11008E8402 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB74C2C1C620F11008E8402 /* Main.storyboard */; };
+		BEB74C301C620F11008E8402 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEB74C2F1C620F11008E8402 /* Assets.xcassets */; };
+		BEB74C331C620F11008E8402 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB74C311C620F11008E8402 /* LaunchScreen.storyboard */; };
+		BEDB8EF11C631D1C00423338 /* MLImageCropController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8EEC1C631D1C00423338 /* MLImageCropController.m */; };
+		BEDB8EF21C631D1C00423338 /* MLRectModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8EEE1C631D1C00423338 /* MLRectModifier.m */; };
+		BEDB8EF31C631D1C00423338 /* MLShadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8EF01C631D1C00423338 /* MLShadeView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BEB74C201C620F11008E8402 /* MLImageCropDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLImageCropDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEB74C241C620F11008E8402 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BEB74C261C620F11008E8402 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BEB74C271C620F11008E8402 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BEB74C291C620F11008E8402 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BEB74C2A1C620F11008E8402 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BEB74C2D1C620F11008E8402 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BEB74C2F1C620F11008E8402 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BEB74C321C620F11008E8402 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BEB74C341C620F11008E8402 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEDB8EEB1C631D1C00423338 /* MLImageCropController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLImageCropController.h; sourceTree = "<group>"; };
+		BEDB8EEC1C631D1C00423338 /* MLImageCropController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLImageCropController.m; sourceTree = "<group>"; };
+		BEDB8EED1C631D1C00423338 /* MLRectModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRectModifier.h; sourceTree = "<group>"; };
+		BEDB8EEE1C631D1C00423338 /* MLRectModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRectModifier.m; sourceTree = "<group>"; };
+		BEDB8EEF1C631D1C00423338 /* MLShadeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLShadeView.h; sourceTree = "<group>"; };
+		BEDB8EF01C631D1C00423338 /* MLShadeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLShadeView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEB74C1D1C620F11008E8402 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BEB74C171C620F11008E8402 = {
+			isa = PBXGroup;
+			children = (
+				BEDB8EEA1C631D1C00423338 /* MLImageCrop */,
+				BEB74C221C620F11008E8402 /* MLImageCropDemo */,
+				BEB74C211C620F11008E8402 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BEB74C211C620F11008E8402 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEB74C201C620F11008E8402 /* MLImageCropDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEB74C221C620F11008E8402 /* MLImageCropDemo */ = {
+			isa = PBXGroup;
+			children = (
+				BEB74C261C620F11008E8402 /* AppDelegate.h */,
+				BEB74C271C620F11008E8402 /* AppDelegate.m */,
+				BEB74C291C620F11008E8402 /* ViewController.h */,
+				BEB74C2A1C620F11008E8402 /* ViewController.m */,
+				BEB74C2C1C620F11008E8402 /* Main.storyboard */,
+				BEB74C2F1C620F11008E8402 /* Assets.xcassets */,
+				BEB74C311C620F11008E8402 /* LaunchScreen.storyboard */,
+				BEB74C341C620F11008E8402 /* Info.plist */,
+				BEB74C231C620F11008E8402 /* Supporting Files */,
+			);
+			path = MLImageCropDemo;
+			sourceTree = "<group>";
+		};
+		BEB74C231C620F11008E8402 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEB74C241C620F11008E8402 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEDB8EEA1C631D1C00423338 /* MLImageCrop */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB8EEB1C631D1C00423338 /* MLImageCropController.h */,
+				BEDB8EEC1C631D1C00423338 /* MLImageCropController.m */,
+				BEDB8EED1C631D1C00423338 /* MLRectModifier.h */,
+				BEDB8EEE1C631D1C00423338 /* MLRectModifier.m */,
+				BEDB8EEF1C631D1C00423338 /* MLShadeView.h */,
+				BEDB8EF01C631D1C00423338 /* MLShadeView.m */,
+			);
+			path = MLImageCrop;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BEB74C1F1C620F11008E8402 /* MLImageCropDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEB74C371C620F11008E8402 /* Build configuration list for PBXNativeTarget "MLImageCropDemo" */;
+			buildPhases = (
+				BEB74C1C1C620F11008E8402 /* Sources */,
+				BEB74C1D1C620F11008E8402 /* Frameworks */,
+				BEB74C1E1C620F11008E8402 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MLImageCropDemo;
+			productName = MLImageCropDemo;
+			productReference = BEB74C201C620F11008E8402 /* MLImageCropDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BEB74C181C620F11008E8402 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Malong Tech";
+				TargetAttributes = {
+					BEB74C1F1C620F11008E8402 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = BEB74C1B1C620F11008E8402 /* Build configuration list for PBXProject "MLImageCropDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BEB74C171C620F11008E8402;
+			productRefGroup = BEB74C211C620F11008E8402 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEB74C1F1C620F11008E8402 /* MLImageCropDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BEB74C1E1C620F11008E8402 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEB74C331C620F11008E8402 /* LaunchScreen.storyboard in Resources */,
+				BEB74C301C620F11008E8402 /* Assets.xcassets in Resources */,
+				BEB74C2E1C620F11008E8402 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEB74C1C1C620F11008E8402 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEB74C2B1C620F11008E8402 /* ViewController.m in Sources */,
+				BEDB8EF21C631D1C00423338 /* MLRectModifier.m in Sources */,
+				BEB74C281C620F11008E8402 /* AppDelegate.m in Sources */,
+				BEDB8EF31C631D1C00423338 /* MLShadeView.m in Sources */,
+				BEDB8EF11C631D1C00423338 /* MLImageCropController.m in Sources */,
+				BEB74C251C620F11008E8402 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BEB74C2C1C620F11008E8402 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEB74C2D1C620F11008E8402 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BEB74C311C620F11008E8402 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEB74C321C620F11008E8402 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BEB74C351C620F11008E8402 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BEB74C361C620F11008E8402 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BEB74C381C620F11008E8402 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MLImageCropDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.malongtech.MLImageCropDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+			};
+			name = Debug;
+		};
+		BEB74C391C620F11008E8402 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MLImageCropDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.malongtech.MLImageCropDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEB74C1B1C620F11008E8402 /* Build configuration list for PBXProject "MLImageCropDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEB74C351C620F11008E8402 /* Debug */,
+				BEB74C361C620F11008E8402 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEB74C371C620F11008E8402 /* Build configuration list for PBXNativeTarget "MLImageCropDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEB74C381C620F11008E8402 /* Debug */,
+				BEB74C391C620F11008E8402 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BEB74C181C620F11008E8402 /* Project object */;
+}
