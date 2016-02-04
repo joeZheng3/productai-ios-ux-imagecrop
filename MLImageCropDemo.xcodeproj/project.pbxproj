@@ -16,6 +16,9 @@
 		BEDB8EF11C631D1C00423338 /* MLImageCropController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8EEC1C631D1C00423338 /* MLImageCropController.m */; };
 		BEDB8EF21C631D1C00423338 /* MLRectModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8EEE1C631D1C00423338 /* MLRectModifier.m */; };
 		BEDB8EF31C631D1C00423338 /* MLShadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8EF01C631D1C00423338 /* MLShadeView.m */; };
+		BEDB8EF81C634C0C00423338 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8EF51C634C0C00423338 /* LICENSE */; };
+		BEDB8EF91C634C0C00423338 /* MLImageCrop.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8EF61C634C0C00423338 /* MLImageCrop.podspec */; };
+		BEDB8EFA1C634C0C00423338 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8EF71C634C0C00423338 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		BEDB8EEE1C631D1C00423338 /* MLRectModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRectModifier.m; sourceTree = "<group>"; };
 		BEDB8EEF1C631D1C00423338 /* MLShadeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLShadeView.h; sourceTree = "<group>"; };
 		BEDB8EF01C631D1C00423338 /* MLShadeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLShadeView.m; sourceTree = "<group>"; };
+		BEDB8EF51C634C0C00423338 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		BEDB8EF61C634C0C00423338 /* MLImageCrop.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MLImageCrop.podspec; sourceTree = "<group>"; };
+		BEDB8EF71C634C0C00423338 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +57,9 @@
 		BEB74C171C620F11008E8402 = {
 			isa = PBXGroup;
 			children = (
+				BEDB8EF51C634C0C00423338 /* LICENSE */,
+				BEDB8EF61C634C0C00423338 /* MLImageCrop.podspec */,
+				BEDB8EF71C634C0C00423338 /* README.md */,
 				BEDB8EEA1C631D1C00423338 /* MLImageCrop */,
 				BEB74C221C620F11008E8402 /* MLImageCropDemo */,
 				BEB74C211C620F11008E8402 /* Products */,
@@ -160,7 +169,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEB74C331C620F11008E8402 /* LaunchScreen.storyboard in Resources */,
+				BEDB8EF91C634C0C00423338 /* MLImageCrop.podspec in Resources */,
 				BEB74C301C620F11008E8402 /* Assets.xcassets in Resources */,
+				BEDB8EF81C634C0C00423338 /* LICENSE in Resources */,
 				BEB74C2E1C620F11008E8402 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,6 +186,7 @@
 				BEB74C2B1C620F11008E8402 /* ViewController.m in Sources */,
 				BEDB8EF21C631D1C00423338 /* MLRectModifier.m in Sources */,
 				BEB74C281C620F11008E8402 /* AppDelegate.m in Sources */,
+				BEDB8EFA1C634C0C00423338 /* README.md in Sources */,
 				BEDB8EF31C631D1C00423338 /* MLShadeView.m in Sources */,
 				BEDB8EF11C631D1C00423338 /* MLImageCropController.m in Sources */,
 				BEB74C251C620F11008E8402 /* main.m in Sources */,
