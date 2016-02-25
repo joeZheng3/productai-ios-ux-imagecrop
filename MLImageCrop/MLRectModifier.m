@@ -8,7 +8,8 @@
 
 #import "MLRectModifier.h"
 
-float TOUCH_SIZE = 25;
+float TOUCH_SIZE_IN = 15;
+float TOUCH_SIZE_OUT = 35;
 @interface MLRectModifier ()
 @property (nonatomic) CGFloat minX;
 @property (nonatomic) CGFloat minY;
@@ -109,8 +110,8 @@ float TOUCH_SIZE = 25;
 @implementation MLRectModifier_LeftTop
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation {
     CGPoint toCheckPoint = rect.origin;
-    if (TouchLocation.x > toCheckPoint.x - TOUCH_SIZE && TouchLocation.x < toCheckPoint.x + TOUCH_SIZE &&
-        TouchLocation.y > toCheckPoint.y - TOUCH_SIZE && TouchLocation.y < toCheckPoint.y + TOUCH_SIZE) {
+    if (TouchLocation.x > toCheckPoint.x - TOUCH_SIZE_OUT && TouchLocation.x < toCheckPoint.x + TOUCH_SIZE_IN &&
+        TouchLocation.y > toCheckPoint.y - TOUCH_SIZE_OUT && TouchLocation.y < toCheckPoint.y + TOUCH_SIZE_IN) {
         return YES;
     }
     return NO;
@@ -126,8 +127,8 @@ float TOUCH_SIZE = 25;
 @implementation MLRectModifier_RightTop
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation {
     CGPoint toCheckPoint = CGPointMake(rect.origin.x + rect.size.width, rect.origin.y);
-    if (TouchLocation.x > toCheckPoint.x - TOUCH_SIZE && TouchLocation.x < toCheckPoint.x + TOUCH_SIZE &&
-        TouchLocation.y > toCheckPoint.y - TOUCH_SIZE && TouchLocation.y < toCheckPoint.y + TOUCH_SIZE) {
+    if (TouchLocation.x > toCheckPoint.x - TOUCH_SIZE_IN && TouchLocation.x < toCheckPoint.x + TOUCH_SIZE_OUT &&
+        TouchLocation.y > toCheckPoint.y - TOUCH_SIZE_OUT && TouchLocation.y < toCheckPoint.y + TOUCH_SIZE_IN) {
         return YES;
     }
     return NO;
@@ -143,8 +144,8 @@ float TOUCH_SIZE = 25;
 @implementation MLRectModifier_RightBottom
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation {
     CGPoint toCheckPoint = CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
-    if (TouchLocation.x > toCheckPoint.x - TOUCH_SIZE && TouchLocation.x < toCheckPoint.x + TOUCH_SIZE &&
-        TouchLocation.y > toCheckPoint.y - TOUCH_SIZE && TouchLocation.y < toCheckPoint.y + TOUCH_SIZE) {
+    if (TouchLocation.x > toCheckPoint.x - TOUCH_SIZE_IN && TouchLocation.x < toCheckPoint.x + TOUCH_SIZE_OUT &&
+        TouchLocation.y > toCheckPoint.y - TOUCH_SIZE_IN && TouchLocation.y < toCheckPoint.y + TOUCH_SIZE_OUT) {
         return YES;
     }
     return NO;
@@ -160,8 +161,8 @@ float TOUCH_SIZE = 25;
 @implementation MLRectModifier_LeftBottom
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation {
     CGPoint toCheckPoint = CGPointMake(rect.origin.x, rect.origin.y + rect.size.height);
-    if (TouchLocation.x > toCheckPoint.x - TOUCH_SIZE && TouchLocation.x < toCheckPoint.x + TOUCH_SIZE &&
-        TouchLocation.y > toCheckPoint.y - TOUCH_SIZE && TouchLocation.y < toCheckPoint.y + TOUCH_SIZE) {
+    if (TouchLocation.x > toCheckPoint.x - TOUCH_SIZE_OUT && TouchLocation.x < toCheckPoint.x + TOUCH_SIZE_IN &&
+        TouchLocation.y > toCheckPoint.y - TOUCH_SIZE_IN && TouchLocation.y < toCheckPoint.y + TOUCH_SIZE_OUT) {
         return YES;
     }
     return NO;
@@ -176,9 +177,9 @@ float TOUCH_SIZE = 25;
 
 @implementation MLRectModifier_LeftEdge
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation {
-    if (TouchLocation.x > rect.origin.x - TOUCH_SIZE && TouchLocation.x < rect.origin.x + TOUCH_SIZE &&
-        TouchLocation.y < rect.origin.y + rect.size.height - TOUCH_SIZE &&
-        TouchLocation.y > rect.origin.y + TOUCH_SIZE) {
+    if (TouchLocation.x > rect.origin.x - TOUCH_SIZE_OUT && TouchLocation.x < rect.origin.x + TOUCH_SIZE_IN &&
+        TouchLocation.y < rect.origin.y + rect.size.height - TOUCH_SIZE_IN &&
+        TouchLocation.y > rect.origin.y + TOUCH_SIZE_IN) {
         return YES;
     }
     return NO;
@@ -191,9 +192,9 @@ float TOUCH_SIZE = 25;
 
 @implementation MLRectModifier_TopEdge
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation {
-    if (TouchLocation.x > rect.origin.x + TOUCH_SIZE &&
-        TouchLocation.x < rect.origin.x + rect.size.width - TOUCH_SIZE &&
-        TouchLocation.y < rect.origin.y + TOUCH_SIZE && TouchLocation.y > rect.origin.y - TOUCH_SIZE) {
+    if (TouchLocation.x > rect.origin.x + TOUCH_SIZE_IN &&
+        TouchLocation.x < rect.origin.x + rect.size.width - TOUCH_SIZE_IN &&
+        TouchLocation.y < rect.origin.y + TOUCH_SIZE_IN && TouchLocation.y > rect.origin.y - TOUCH_SIZE_OUT) {
         return YES;
     }
     return NO;
@@ -206,10 +207,10 @@ float TOUCH_SIZE = 25;
 
 @implementation MLRectModifier_RightEdge
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation {
-    if (TouchLocation.x > rect.origin.x + rect.size.width - TOUCH_SIZE &&
-        TouchLocation.x < rect.origin.x + rect.size.width + TOUCH_SIZE &&
-        TouchLocation.y < rect.origin.y + rect.size.height - TOUCH_SIZE &&
-        TouchLocation.y > rect.origin.y + TOUCH_SIZE) {
+    if (TouchLocation.x > rect.origin.x + rect.size.width - TOUCH_SIZE_IN &&
+        TouchLocation.x < rect.origin.x + rect.size.width + TOUCH_SIZE_OUT &&
+        TouchLocation.y < rect.origin.y + rect.size.height - TOUCH_SIZE_IN &&
+        TouchLocation.y > rect.origin.y + TOUCH_SIZE_IN) {
         return YES;
     }
     return NO;
@@ -222,10 +223,10 @@ float TOUCH_SIZE = 25;
 
 @implementation MLRectModifier_BottomEdge
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation {
-    if (TouchLocation.x > rect.origin.x + TOUCH_SIZE &&
-        TouchLocation.x < rect.origin.x + rect.size.width - TOUCH_SIZE &&
-        TouchLocation.y < rect.origin.y + rect.size.height + TOUCH_SIZE &&
-        TouchLocation.y > rect.origin.y + rect.size.height - TOUCH_SIZE) {
+    if (TouchLocation.x > rect.origin.x + TOUCH_SIZE_IN &&
+        TouchLocation.x < rect.origin.x + rect.size.width - TOUCH_SIZE_IN &&
+        TouchLocation.y < rect.origin.y + rect.size.height + TOUCH_SIZE_OUT &&
+        TouchLocation.y > rect.origin.y + rect.size.height - TOUCH_SIZE_IN) {
         return YES;
     }
     return NO;
@@ -238,8 +239,10 @@ float TOUCH_SIZE = 25;
 
 @implementation MLRectModifier_Body
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation {
-    if (TouchLocation.x > CGRectGetMinX(rect) + TOUCH_SIZE && TouchLocation.x < CGRectGetMaxX(rect) - TOUCH_SIZE &&
-        TouchLocation.y < CGRectGetMaxY(rect) - TOUCH_SIZE && TouchLocation.y > CGRectGetMinY(rect) + TOUCH_SIZE) {
+    if (TouchLocation.x > CGRectGetMinX(rect) + TOUCH_SIZE_IN &&
+        TouchLocation.x < CGRectGetMaxX(rect) - TOUCH_SIZE_IN &&
+        TouchLocation.y < CGRectGetMaxY(rect) - TOUCH_SIZE_IN &&
+        TouchLocation.y > CGRectGetMinY(rect) + TOUCH_SIZE_IN) {
         return YES;
     }
     return NO;
