@@ -250,12 +250,16 @@ float TOUCH_SIZE_OUT = 35;
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation {
     CGRect newRect =
         CGRectMake(rect.origin.x + translation.x, rect.origin.y + translation.y, rect.size.width, rect.size.height);
-    CGPoint newTranslation = [self getSafeTranslation:translation byNewRect:newRect];
-    if (CGPointEqualToPoint(newTranslation, translation)) {
-        return newRect;
-    } else {
-        return CGRectMake(rect.origin.x + newTranslation.x, rect.origin.y + newTranslation.y, rect.size.width,
-                          rect.size.height);
-    }
+    // help user adjust the box
+    newRect = CGRectIntersection(self.availableArea, newRect);
+    return newRect;
+
+    //    CGPoint newTranslation = [self getSafeTranslation:translation byNewRect:newRect];
+    //    if (CGPointEqualToPoint(newTranslation, translation)) {
+    //        return newRect;
+    //    } else {
+    //        return CGRectMake(rect.origin.x + newTranslation.x, rect.origin.y + newTranslation.y, rect.size.width,
+    //                          rect.size.height);
+    //    }
 }
 @end
