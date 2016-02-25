@@ -97,6 +97,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 }
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     [self viewDidLoad_imageView];
     [self viewDidLoad_shadeView];
@@ -208,8 +209,10 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
             [recognizer setTranslation:self.currentModifier.restTranslation inView:self.view];
         }
     } else {
-        _currentModifier = nil;
-        [self cropAreaChanged];
+        if (_currentModifier) {
+            _currentModifier = nil;
+            [self cropAreaChanged];
+        }
         return;
     }
 }
