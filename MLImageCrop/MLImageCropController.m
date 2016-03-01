@@ -19,6 +19,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 @property (nonatomic, strong) MLRectModifier *currentModifier;
 @property (nonatomic, strong) UIButton *doneBtn;
 @property (nonatomic, strong) UIButton *backBtn;
+@property BOOL isInNavContorller;
 @end
 
 @implementation MLImageCropController
@@ -109,12 +110,23 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     }
 }
 - (void)viewWillAppear_views {
-    // size by navigation
-    //    CGRect viewFrame =
-    //        CGRectMake(0, 0, self.view.bounds.size.width,
-    //                   self.view.bounds.size.height - [[self navigationController] navigationBar].bounds.size.height -
-    //                       [[UIApplication sharedApplication] statusBarFrame].size.height);
-    CGRect viewFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+
+    _isInNavContorller = [self navigationController] != nil;
+    CGRect viewFrame;
+    if (_isInNavContorller) {
+        viewFrame =
+            CGRectMake(0, 0, self.view.bounds.size.width,
+                       self.view.bounds.size.height - [[self navigationController] navigationBar].bounds.size.height -
+                           [[UIApplication sharedApplication] statusBarFrame].size.height);
+        _backBtn.hidden = YES;
+        self.navigationItem.leftBarButtonItem =
+            [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                          target:self
+                                                          action:@selector(cancel)];
+        [self.navigationItem setRightBarButtonItem:nil];
+    } else {
+        viewFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    }
 
     self.view.frame = viewFrame;
     _shadeView.frame =
@@ -143,6 +155,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     }
 }
 - (void)viewWillAppear:(BOOL)animated {
+
     [super viewWillAppear:animated];
     // views
     [self viewWillAppear_views];
