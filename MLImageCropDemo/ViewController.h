@@ -8,5 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol cropDemo <NSObject>
+- (void)run:(nonnull UIImage *)image;
+@end
+
 @interface ViewController : UIViewController
++ (nonnull UIButton *)buttonCreator:(nonnull NSString *)title
+                             target:(nullable id)target
+                             action:(nonnull SEL)action
+                              frame:(CGRect)frame;
 @end

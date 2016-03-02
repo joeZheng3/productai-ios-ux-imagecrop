@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MLImageCrop"
-  s.version      = "0.5"
+  s.version      = "0.6"
   s.summary      = "A Objective-C library for iOS used to crop or select rect of image"
   s.description  = <<-DESC
                    A Objective-C library for iOS. It provide a customizable UI for user to select or crop a rect in image.
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.author             = { "Haihan Wang" => "wanghaihan@live.com" }
   s.platform     = :ios
-  s.source       = { :git => "https://github.com/malongtech/MLImageCrop.git", :tag => "0.5" }
+  s.source       = { :git => "https://github.com/malongtech/MLImageCrop.git", :tag => "0.6" }
 
   s.source_files  = "MLImageCrop/*"
   # s.exclude_files = "Classes/Exclude"

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BEA22D8D1C86C7BE0078F169 /* CustomLayerDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA22D8C1C86C7BE0078F169 /* CustomLayerDemo.m */; };
+		BEA22D901C86C9020078F169 /* BasicDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA22D8F1C86C9020078F169 /* BasicDemo.m */; };
 		BEB74C251C620F11008E8402 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB74C241C620F11008E8402 /* main.m */; };
 		BEB74C281C620F11008E8402 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB74C271C620F11008E8402 /* AppDelegate.m */; };
 		BEB74C2B1C620F11008E8402 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB74C2A1C620F11008E8402 /* ViewController.m */; };
@@ -22,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BEA22D8B1C86C7BE0078F169 /* CustomLayerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLayerDemo.h; sourceTree = "<group>"; };
+		BEA22D8C1C86C7BE0078F169 /* CustomLayerDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLayerDemo.m; sourceTree = "<group>"; };
+		BEA22D8E1C86C9020078F169 /* BasicDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicDemo.h; sourceTree = "<group>"; };
+		BEA22D8F1C86C9020078F169 /* BasicDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicDemo.m; sourceTree = "<group>"; };
 		BEB74C201C620F11008E8402 /* MLImageCropDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLImageCropDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB74C241C620F11008E8402 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BEB74C261C620F11008E8402 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +92,10 @@
 				BEB74C311C620F11008E8402 /* LaunchScreen.storyboard */,
 				BEB74C341C620F11008E8402 /* Info.plist */,
 				BEB74C231C620F11008E8402 /* Supporting Files */,
+				BEA22D8B1C86C7BE0078F169 /* CustomLayerDemo.h */,
+				BEA22D8C1C86C7BE0078F169 /* CustomLayerDemo.m */,
+				BEA22D8E1C86C9020078F169 /* BasicDemo.h */,
+				BEA22D8F1C86C9020078F169 /* BasicDemo.m */,
 			);
 			path = MLImageCropDemo;
 			sourceTree = "<group>";
@@ -184,12 +194,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEB74C2B1C620F11008E8402 /* ViewController.m in Sources */,
+				BEA22D8D1C86C7BE0078F169 /* CustomLayerDemo.m in Sources */,
 				BEDB8EF21C631D1C00423338 /* MLRectModifier.m in Sources */,
 				BEB74C281C620F11008E8402 /* AppDelegate.m in Sources */,
 				BEDB8EFA1C634C0C00423338 /* README.md in Sources */,
 				BEDB8EF31C631D1C00423338 /* MLShadeView.m in Sources */,
 				BEDB8EF11C631D1C00423338 /* MLImageCropController.m in Sources */,
 				BEB74C251C620F11008E8402 /* main.m in Sources */,
+				BEA22D901C86C9020078F169 /* BasicDemo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
