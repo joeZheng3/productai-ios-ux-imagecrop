@@ -29,15 +29,6 @@
 @interface MLImageCropController : UIViewController
 @property (nonatomic, strong) id<MLImageCropControllerDelegate> delegate;
 
-@property (nonatomic, strong) UIColor *cropBorderColor;
-@property (nonatomic) CGFloat cropBorderWidth;
-
-@property (nonatomic, strong) UIColor *pointColor;
-@property (nonatomic) CGFloat pointRadius;
-
-@property (nonatomic, strong) UIColor *cropAreaColor;
-@property (nonatomic, strong) UIColor *cropMaskColor;
-
 @property (nonatomic, strong) UIColor *buttonTitleColor;
 @property (nonatomic, strong) UIColor *buttonBackgroundColor;
 @property (nonatomic, strong) NSString *buttonText;

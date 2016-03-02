@@ -15,9 +15,19 @@
     if (self) {
         // Initialization code
         self.opaque = NO;
+        _cropBorderColor = [UIColor whiteColor];
+        _cropBorderWidth = 1.5;
+        _cropAreaColor = [UIColor colorWithRed:1 green:1 blue:0 alpha:0.2];
+        _cropMaskColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+        _pointColor = [UIColor colorWithRed:0.98 green:0.87 blue:0.2 alpha:1];
+        _pointRadius = 6;
     }
     return self;
 }
+
+//- (void)redraw {
+//    self drawRect:_cropArea
+//}
 
 - (void)setCropArea:(CGRect)cropArea {
     _cropArea = cropArea;

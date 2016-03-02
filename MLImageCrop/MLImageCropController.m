@@ -26,16 +26,9 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 - (instancetype)init {
     self = [super init];
     if (self) {
-        UIColor *yellow = [UIColor colorWithRed:0.98 green:0.87 blue:0.2 alpha:1];
-        _cropBorderColor = [UIColor whiteColor];
-        _cropBorderWidth = 1.5;
-        _cropAreaColor = [UIColor colorWithRed:1 green:1 blue:0 alpha:0.2];
-        _cropMaskColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
-        _pointColor = yellow;
         _buttonTitleColor = [UIColor blackColor];
-        _buttonBackgroundColor = yellow;
+        _buttonBackgroundColor = [UIColor colorWithRed:0.98 green:0.87 blue:0.2 alpha:1];
         _buttonText = @"确定";
-        _pointRadius = 6;
         _imageView = [[UIImageView alloc] init];
     }
     return self;
@@ -59,12 +52,6 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     // shade should not hide the button
     _shadeView = [[MLShadeView alloc] init];
     _shadeView.cropArea = _cropAreaInView;
-    _shadeView.cropBorderColor = _cropBorderColor;
-    _shadeView.cropBorderWidth = _cropBorderWidth;
-    _shadeView.pointColor = _pointColor;
-    _shadeView.pointRadius = _pointRadius;
-    _shadeView.cropAreaColor = _cropAreaColor;
-    _shadeView.cropMaskColor = _cropMaskColor;
     [self.view addSubview:_shadeView];
 }
 - (void)viewDidLoad_recognizer {
