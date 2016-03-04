@@ -18,10 +18,11 @@ float TOUCH_SIZE_OUT = 35;
 @end
 
 @implementation MLRectModifier
-- (instancetype)initWithAvailableArea:(CGRect)availableArea {
+- (instancetype)initWithAvailableArea:(CGRect)availableArea startPoint:(CGPoint)startPoint {
     self = [super init];
     if (self) {
         self.availableArea = availableArea;
+        self.lastPoint = startPoint;
     }
     return self;
 }
@@ -57,7 +58,7 @@ float TOUCH_SIZE_OUT = 35;
             restY = 0;
         }
     }
-    self.restTranslation = CGPointMake(restX, restY);
+    // self.restTranslation = CGPointMake(restX, restY);
     return CGPointMake(translation.x - restX, translation.y - restY);
 }
 
@@ -77,7 +78,7 @@ float TOUCH_SIZE_OUT = 35;
             restY = 0;
         }
     }
-    self.restTranslation = CGPointMake(restX, restY);
+    // self.restTranslation = CGPointMake(restX, restY);
     return CGPointMake(translation.x - restX, translation.y - restY);
 }
 
@@ -89,7 +90,7 @@ float TOUCH_SIZE_OUT = 35;
             restX = 0;
         }
     }
-    self.restTranslation = CGPointMake(restX, 0);
+    // self.restTranslation = CGPointMake(restX, 0);
     return CGPointMake(translation.x - restX, translation.y);
 }
 
@@ -101,8 +102,11 @@ float TOUCH_SIZE_OUT = 35;
             restY = 0;
         }
     }
-    self.restTranslation = CGPointMake(0, restY);
+    // self.restTranslation = CGPointMake(0, restY);
     return CGPointMake(translation.x, translation.y - restY);
+}
+- (void)refreshLastPoint:(CGPoint)safeTranslation {
+    _lastPoint = CGPointMake(_lastPoint.x + safeTranslation.x, _lastPoint.y + safeTranslation.y);
 }
 
 @end
@@ -119,6 +123,7 @@ float TOUCH_SIZE_OUT = 35;
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation {
     CGPoint newPoint = CGPointMake(rect.origin.x + translation.x, rect.origin.y + translation.y);
     translation = [self getSafeTranslation:translation byNewPoint:newPoint];
+    [self refreshLastPoint:translation];
     return CGRectMake(rect.origin.x + translation.x, rect.origin.y + translation.y, rect.size.width - translation.x,
                       rect.size.height - translation.y);
 }
@@ -136,6 +141,7 @@ float TOUCH_SIZE_OUT = 35;
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation {
     CGPoint newPoint = CGPointMake(rect.origin.x + rect.size.width + translation.x, rect.origin.y + translation.y);
     translation = [self getSafeTranslation:translation byNewPoint:newPoint];
+    [self refreshLastPoint:translation];
     return CGRectMake(rect.origin.x, rect.origin.y + translation.y, rect.size.width + translation.x,
                       rect.size.height - translation.y);
 }
@@ -154,6 +160,7 @@ float TOUCH_SIZE_OUT = 35;
     CGPoint newPoint =
         CGPointMake(rect.origin.x + rect.size.width + translation.x, rect.origin.y + rect.size.height + translation.y);
     translation = [self getSafeTranslation:translation byNewPoint:newPoint];
+    [self refreshLastPoint:translation];
     return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width + translation.x, rect.size.height + translation.y);
 }
 @end
@@ -170,6 +177,7 @@ float TOUCH_SIZE_OUT = 35;
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation {
     CGPoint newPoint = CGPointMake(rect.origin.x + translation.x, rect.origin.y + rect.size.height + translation.y);
     translation = [self getSafeTranslation:translation byNewPoint:newPoint];
+    [self refreshLastPoint:translation];
     return CGRectMake(rect.origin.x + translation.x, rect.origin.y, rect.size.width - translation.x,
                       rect.size.height + translation.y);
 }
@@ -186,6 +194,7 @@ float TOUCH_SIZE_OUT = 35;
 }
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation {
     translation = [self getSafeTranslation:translation byNewX:rect.origin.x + translation.x];
+    [self refreshLastPoint:translation];
     return CGRectMake(rect.origin.x + translation.x, rect.origin.y, rect.size.width - translation.x, rect.size.height);
 }
 @end
@@ -201,6 +210,7 @@ float TOUCH_SIZE_OUT = 35;
 }
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation {
     translation = [self getSafeTranslation:translation byNewY:rect.origin.y + translation.y];
+    [self refreshLastPoint:translation];
     return CGRectMake(rect.origin.x, rect.origin.y + translation.y, rect.size.width, rect.size.height - translation.y);
 }
 @end
@@ -217,6 +227,7 @@ float TOUCH_SIZE_OUT = 35;
 }
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation {
     translation = [self getSafeTranslation:translation byNewX:rect.origin.x + rect.size.width + translation.x];
+    [self refreshLastPoint:translation];
     return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width + translation.x, rect.size.height);
 }
 @end
@@ -233,6 +244,7 @@ float TOUCH_SIZE_OUT = 35;
 }
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation {
     translation = [self getSafeTranslation:translation byNewY:rect.origin.y + rect.size.height + translation.y];
+    [self refreshLastPoint:translation];
     return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height + translation.y);
 }
 @end
@@ -248,10 +260,15 @@ float TOUCH_SIZE_OUT = 35;
     return NO;
 }
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation {
+
     CGRect newRect =
         CGRectMake(rect.origin.x + translation.x, rect.origin.y + translation.y, rect.size.width, rect.size.height);
     // help user adjust the box
     newRect = CGRectIntersection(self.availableArea, newRect);
+    if (newRect.size.width < 2 || newRect.size.height < 2) {
+        return rect;
+    }
+    [self refreshLastPoint:translation];
     return newRect;
 
     //    CGPoint newTranslation = [self getSafeTranslation:translation byNewRect:newRect];

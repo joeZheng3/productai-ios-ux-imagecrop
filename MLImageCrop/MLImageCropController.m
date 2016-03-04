@@ -16,13 +16,11 @@ const CGFloat BUTTON_HEIGHT = 54;
 typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 @interface MLImageCropController ()
 @property (nonatomic) CGRect initCropAreaInImage;
-@property (nonatomic, strong) MLRectModifier *currentModifier;
-@property (nonatomic) CGPoint lastPoint;
-@property (nonatomic) BOOL isOneTouch;
-@property (nonatomic, strong) MLRectModifier *currentModifier2;
-@property (nonatomic) CGPoint lastPoint2;
 @property (nonatomic, strong) UIButton *doneBtn;
 @property (nonatomic, strong) UIButton *backBtn;
+
+@property (nonatomic, strong) NSMutableDictionary *modifiers;
+
 @property BOOL isInNavContorller;
 @end
 
@@ -34,6 +32,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
         _buttonBackgroundColor = [UIColor colorWithRed:0.98 green:0.87 blue:0.2 alpha:1];
         _buttonText = @"确定";
         _imageView = [[UIImageView alloc] init];
+        _modifiers = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -83,7 +82,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.view.multipleTouchEnabled = YES;
     self.view.backgroundColor = [UIColor blackColor];
     [self viewDidLoad_imageView];
     [self viewDidLoad_shadeView];
@@ -139,10 +138,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     }
 }
 - (void)viewWillAppear:(BOOL)animated {
-
     [super viewWillAppear:animated];
-
-    self.view.multipleTouchEnabled = NO;
     // views
     [self viewWillAppear_views];
     // crop area
@@ -150,106 +146,88 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 }
 - (MLRectModifier *)getModifier:(CGRect)imageFrame byPoint:(CGPoint)point {
     if ([MLRectModifier_LeftTop isHit:_cropAreaInView byTouchLocation:point]) {
-        return [[MLRectModifier_LeftTop alloc] initWithAvailableArea:imageFrame];
+        return [[MLRectModifier_LeftTop alloc] initWithAvailableArea:imageFrame startPoint:point];
     }
     if ([MLRectModifier_RightTop isHit:_cropAreaInView byTouchLocation:point]) {
-        return [[MLRectModifier_RightTop alloc] initWithAvailableArea:imageFrame];
+        return [[MLRectModifier_RightTop alloc] initWithAvailableArea:imageFrame startPoint:point];
     }
     if ([MLRectModifier_RightBottom isHit:_cropAreaInView byTouchLocation:point]) {
-        return [[MLRectModifier_RightBottom alloc] initWithAvailableArea:imageFrame];
+        return [[MLRectModifier_RightBottom alloc] initWithAvailableArea:imageFrame startPoint:point];
     }
     if ([MLRectModifier_LeftBottom isHit:_cropAreaInView byTouchLocation:point]) {
-        return [[MLRectModifier_LeftBottom alloc] initWithAvailableArea:imageFrame];
+        return [[MLRectModifier_LeftBottom alloc] initWithAvailableArea:imageFrame startPoint:point];
     }
     if ([MLRectModifier_LeftEdge isHit:_cropAreaInView byTouchLocation:point]) {
-        return [[MLRectModifier_LeftEdge alloc] initWithAvailableArea:imageFrame];
+        return [[MLRectModifier_LeftEdge alloc] initWithAvailableArea:imageFrame startPoint:point];
     }
     if ([MLRectModifier_TopEdge isHit:_cropAreaInView byTouchLocation:point]) {
-        return [[MLRectModifier_TopEdge alloc] initWithAvailableArea:imageFrame];
+        return [[MLRectModifier_TopEdge alloc] initWithAvailableArea:imageFrame startPoint:point];
     }
     if ([MLRectModifier_RightEdge isHit:_cropAreaInView byTouchLocation:point]) {
-        return [[MLRectModifier_RightEdge alloc] initWithAvailableArea:imageFrame];
+        return [[MLRectModifier_RightEdge alloc] initWithAvailableArea:imageFrame startPoint:point];
     }
     if ([MLRectModifier_BottomEdge isHit:_cropAreaInView byTouchLocation:point]) {
-        return [[MLRectModifier_BottomEdge alloc] initWithAvailableArea:imageFrame];
+        return [[MLRectModifier_BottomEdge alloc] initWithAvailableArea:imageFrame startPoint:point];
     }
     if ([MLRectModifier_Body isHit:_cropAreaInView byTouchLocation:point]) {
-        return [[MLRectModifier_Body alloc] initWithAvailableArea:imageFrame];
+        return [[MLRectModifier_Body alloc] initWithAvailableArea:imageFrame startPoint:point];
     }
     return nil;
 }
 
-- (void)startMoving:(NSArray<UITouch *> *)touches {
-    _currentModifier = nil;
-    _currentModifier2 = nil;
+- (void)startMoving:(NSSet<UITouch *> *)touches {
+    // [_modifiers removeAllObjects];
     CGRect imageFrame = _imageView.frame;
-
-    _lastPoint = [touches[0] preciseLocationInView:self.view];
-    _currentModifier = [self getModifier:imageFrame byPoint:_lastPoint];
-
-    // NSLog(@"point0%f,%f", _lastPoint.x, _lastPoint.y);
-
-    if (touches.count > 1) {
-        _lastPoint2 = [touches[1] preciseLocationInView:self.view];
-        _currentModifier2 = [self getModifier:imageFrame byPoint:_lastPoint2];
-        // body move with second finger is realy hard to use
-        if ([_currentModifier2 isKindOfClass:[MLRectModifier_Body class]]) {
-            _currentModifier2 = nil;
-        }
-        //    NSLog(@"point1%f,%f", _lastPoint2.x, _lastPoint2.y);
-
-        _isOneTouch = false;
-    } else {
-        _isOneTouch = true;
+    for (UITouch *touch in touches) {
+        CGPoint touchPoint = [touch preciseLocationInView:self.view];
+        MLRectModifier *modifier = [self getModifier:imageFrame byPoint:touchPoint];
+        NSValue *key = [NSValue valueWithNonretainedObject:touches];
+        _modifiers[key] = modifier;
     }
-
-    //NSLog(@"begin:%lu", touches.count);
 }
 - (void)stopMoving {
-    _currentModifier = nil;
-    _currentModifier2 = nil;
+    [_modifiers removeAllObjects];
     [self cropAreaChanged];
-    //NSLog(@"end");
+    // NSLog(@"end");
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self startMoving:event.allTouches.allObjects];
+    [self startMoving:event.allTouches];
 }
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    // NSLog(@"move:%lu", event.allTouches.count);
-    // return;
 
-    NSArray<UITouch *> *touchArray = event.allTouches.allObjects;
-
-    if ((touchArray.count == 1) != _isOneTouch) {
-        [self startMoving:touchArray];
-    }
-
-    if (self.currentModifier) {
-        CGPoint point = [touchArray[0] preciseLocationInView:self.view];
-        CGPoint translation = CGPointMake(point.x - _lastPoint.x, point.y - _lastPoint.y);
-        self.cropAreaInView = [self.currentModifier modifyRect:_cropAreaInView byTranslation:translation];
-        CGPoint rest = self.currentModifier.restTranslation;
-        _lastPoint = CGPointMake(point.x - rest.x, point.y - rest.y);
-        //[recognizer setTranslation:self.currentModifier.restTranslation inView:self.view];
-    }
-
-    if (touchArray.count > 1) {
-
-        if (self.currentModifier2) {
-            CGPoint point = [touchArray[1] preciseLocationInView:self.view];
-            CGPoint translation = CGPointMake(point.x - _lastPoint2.x, point.y - _lastPoint2.y);
-            self.cropAreaInView = [self.currentModifier2 modifyRect:_cropAreaInView byTranslation:translation];
-            CGPoint rest = self.currentModifier2.restTranslation;
-            _lastPoint2 = CGPointMake(point.x - rest.x, point.y - rest.y);
+    @synchronized(self) {
+        for (UITouch *touch in event.allTouches) {
+            CGPoint touchPoint = [touch preciseLocationInView:self.view];
+            NSValue *key = [NSValue valueWithNonretainedObject:touch];
+            MLRectModifier *modifier = [_modifiers objectForKey:key];
+            if (!modifier) {
+                modifier = [self getModifier:_imageView.frame byPoint:touchPoint];
+                _modifiers[key] = modifier;
+            } else {
+                CGPoint translation =
+                    CGPointMake(touchPoint.x - modifier.lastPoint.x, touchPoint.y - modifier.lastPoint.y);
+                static int stepLen = 10;
+                static int loopThreshold = 40;
+                if (fabs(translation.x) > loopThreshold || fabs(translation.y) > loopThreshold) {
+                    // reduce the block when only move the second finger
+                    float x = translation.x;
+                    float y = translation.y;
+                    int loopTime = MAX(fabsf(x / stepLen), fabsf(y / stepLen));
+                    float stepX = x / loopTime;
+                    float stepY = y / loopTime;
+                    CGPoint stepTranslation = CGPointMake(stepX, stepY);
+                    for (int i = 0; i < loopTime; i++) {
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                            // NSLog(@"%f,%f  %d", x, y, loopTime);
+                            self.cropAreaInView = [modifier modifyRect:_cropAreaInView byTranslation:stepTranslation];
+                        });
+                    }
+                } else {
+                    self.cropAreaInView = [modifier modifyRect:_cropAreaInView byTranslation:translation];
+                }
+            }
         }
-
-        //            CGPoint translation = [recognizer translationInView:self.view];
-        //            CGPoint point0 = [recognizer locationOfTouch:0 inView:self.view];
-        //            CGPoint point1 = [recognizer locationOfTouch:1 inView:self.view];
-        //            NSLog(@"tran:%f,%f point0:%f,%f point1:%f,%f", translation.x, translation.y, point0.x,
-        //            point0.y, point1.x,
-        //                  point1.y);
     }
 }
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
