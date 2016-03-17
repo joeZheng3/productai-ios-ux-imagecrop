@@ -30,9 +30,10 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     if (self) {
         _buttonTitleColor = [UIColor blackColor];
         _buttonBackgroundColor = [UIColor colorWithRed:0.98 green:0.87 blue:0.2 alpha:1];
-        _buttonText = @"OK";
+        _buttonText = @"确定";
         _imageView = [[UIImageView alloc] init];
         _modifiers = [[NSMutableDictionary alloc] init];
+        self.edgesForExtendedLayout = UIRectEdgeLeft | UIRectEdgeRight;
     }
     return self;
 }
@@ -93,14 +94,12 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     }
 }
 - (void)viewWillAppear_views {
-
-    _isInNavContorller = [self navigationController] != nil;
+    UINavigationController *navController = [self navigationController];
     CGRect viewFrame;
-    if (_isInNavContorller) {
-        viewFrame =
-            CGRectMake(0, 0, self.view.bounds.size.width,
-                       self.view.bounds.size.height - [[self navigationController] navigationBar].bounds.size.height -
-                           [[UIApplication sharedApplication] statusBarFrame].size.height);
+    if (navController != nil) {
+        float viewHeight = navController.view.frame.size.height - [navController navigationBar].bounds.size.height -
+                           [[UIApplication sharedApplication] statusBarFrame].size.height;
+        viewFrame = CGRectMake(0, 0, self.view.bounds.size.width, viewHeight);
         _backBtn.hidden = YES;
         self.navigationItem.leftBarButtonItem =
             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel

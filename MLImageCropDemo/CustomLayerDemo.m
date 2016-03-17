@@ -77,14 +77,13 @@
     cropController.customView = [[CustomView alloc] init];
 
     // step 3: show it by present or push into navigation controller
-    UIViewController *currentController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    // push controller into new or your main navigation controller
     UINavigationController *navController = [[UINavigationController alloc] init];
-    [currentController presentViewController:navController
-                                    animated:NO
-                                  completion:^{
-                                      // push controller into navigation controller
-                                      [navController pushViewController:cropController animated:YES];
-                                  }];
+    [navController pushViewController:cropController animated:YES];
+    [[UIApplication sharedApplication]
+            .keyWindow.rootViewController presentViewController:navController
+                                                       animated:YES
+                                                     completion:nil];
 }
 
 // step 4: handle the delegate of done,cancle and crop box changed(option).
@@ -96,7 +95,9 @@
 }
 
 - (void)MLImageCropCancel:(MLImageCropController *)controller {
-    [controller dismissViewControllerAnimated:YES completion:nil];
+    UINavigationController *navController = [controller navigationController];
+    [navController dismissViewControllerAnimated:YES completion:nil];
+    [navController popViewControllerAnimated:YES];
 }
 
 - (void)MLImageCropAreaChanged:(MLImageCropController *)controller croppedRect:(CGRect)croppedRect {
