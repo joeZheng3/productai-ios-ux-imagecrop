@@ -33,6 +33,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
         _buttonText = @"确定";
         _imageView = [[UIImageView alloc] init];
         _modifiers = [[NSMutableDictionary alloc] init];
+        _shadeView = [[MLShadeView alloc] init];
         self.edgesForExtendedLayout = UIRectEdgeLeft | UIRectEdgeRight;
     }
     return self;
@@ -54,7 +55,6 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 
 - (void)viewDidLoad_shadeView {
     // shade should not hide the button
-    _shadeView = [[MLShadeView alloc] init];
     _shadeView.cropArea = _cropAreaInView;
     [self.view addSubview:_shadeView];
 }

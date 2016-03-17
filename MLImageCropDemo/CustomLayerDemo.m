@@ -32,12 +32,10 @@
 }
 - (void)setSuperViewFrame:(CGRect)superViewFrame controller:(MLImageCropController *)controller {
 
-    self.frame = CGRectMake(superViewFrame.origin.x, superViewFrame.origin.y + 50, superViewFrame.size.width,
-                            superViewFrame.size.height - 50);
     // superViewFrame is the bounds of current crop controller
-    CGRect btnFrame = CGRectMake(superViewFrame.origin.x + superViewFrame.size.width / 2 - 100,
-                                 superViewFrame.origin.y + superViewFrame.size.height / 2 - 50 - 25, 200, 50);
-    _btn.frame = btnFrame;
+    self.frame = CGRectMake(superViewFrame.origin.x + superViewFrame.size.width / 2 - 100,
+                            superViewFrame.origin.y + superViewFrame.size.height / 2 - 50 - 25, 200, 50);
+    _btn.frame = self.bounds;
     _controller = controller;
 }
 - (void)changeColor:(UIButton *)sender {
@@ -72,6 +70,11 @@
     // step 1: init controller with image and set delegate
     MLImageCropController *cropController = [[MLImageCropController alloc] initWithImage:image];
     cropController.delegate = self;
+    cropController.buttonBackgroundColor = [UIColor whiteColor];
+    cropController.buttonTitleColor = [UIColor blackColor];
+    cropController.buttonText = @"Go!";
+    cropController.shadeView.cropAreaColor = [UIColor clearColor];
+    cropController.shadeView.cropMaskColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
 
     // step 2: set the custom view
     cropController.customView = [[CustomView alloc] init];
