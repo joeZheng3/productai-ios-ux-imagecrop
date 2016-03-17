@@ -10,12 +10,35 @@
 #import <UIKit/UIKit.h>
 
 @interface MLRectModifier : NSObject
+/**
+ *  init by available area
+ *
+ *  @param availableArea available area
+ *  @param startPoint    first point
+ *
+ *  @return
+ */
 - (instancetype)initWithAvailableArea:(CGRect)availableArea startPoint:(CGPoint)startPoint;
+/**
+ *  change the rect by translation, it will adjust the rect if it out the available area
+ *
+ *  @param rect        current rect
+ *  @param translation translation of moving
+ *
+ *  @return new rect
+ */
 - (CGRect)modifyRect:(CGRect)rect byTranslation:(CGPoint)translation;
+/**
+ *  to check is it can use current modifier
+ *
+ *  @param rect          current rect
+ *  @param TouchLocation touch location
+ *
+ *  @return Yes means hit
+ */
 + (BOOL)isHit:(CGRect)rect byTouchLocation:(CGPoint)TouchLocation;
 @property (nonatomic) CGRect availableArea;
 @property (nonatomic) CGRect modifiedRect;
-//@property (nonatomic) CGPoint restTranslation;
 @property (nonatomic) CGPoint lastPoint;
 @end
 

@@ -15,13 +15,16 @@
 
 @implementation BasicDemo
 - (void)run:(UIImage *)image {
-    MLImageCropController *cropController = [[MLImageCropController alloc] init];
+    // step 1: init controller with image and set delegate
+    MLImageCropController *cropController = [[MLImageCropController alloc] initWithImage:image];
     cropController.delegate = self;
-    cropController.image = image;
+
+    // step 2: show it by present or push into navigation controller
     UIViewController *currentController = [UIApplication sharedApplication].keyWindow.rootViewController;
     [currentController presentViewController:cropController animated:YES completion:nil];
 }
 
+// step 3: handle the delegate of done,cancle and crop box changed(option).
 #pragma mark - ImageCropViewControllerDelegate
 - (void)MLImageCropDone:(MLImageCropController *)controller
            croppedImage:(UIImage *)croppedImage
