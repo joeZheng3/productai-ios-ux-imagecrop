@@ -4,7 +4,7 @@ A Objective-C library for iOS. It provide a customizable UI for user to select o
 ![image](https://github.com/MalongTech/MLImageCroper/blob/master/Screenshot/MLImageCroperDemo1.gif)
 
 ## Requirements
-* Xcode 6 or higher
+* Xcode 5 or higher
 * Apple LLVM compiler
 * iOS 6.0 or higher
 * ARC
@@ -20,47 +20,14 @@ Build and run the `MLImageCropDemo` project in Xcode to see `MLImageCrop` in act
 ### CocoaPods
 
 The recommended approach for installating `MLImageCrop` is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
-For best results, it is recommended that you install via CocoaPods >= **0.28.0** using Git >= **1.8.0** installed via Homebrew.
-
-Install CocoaPods if not already available:
 
 ``` bash
-$ [sudo] gem install cocoapods
-$ pod setup
-```
-
-Change to the directory of your Xcode project:
-
-``` bash
-$ cd /path/to/MyProject
-$ touch Podfile
-$ edit Podfile
-```
-
-Edit your Podfile and add RESideMenu:
-
-``` bash
-platform :ios, '6.0'
 pod 'MLImageCrop'
 ```
 
-Install into your Xcode project:
-
-``` bash
-$ pod install
-```
-
-Open your project in Xcode from the .xcworkspace file (not the usual project file)
-
-``` bash
-$ open MyProject.xcworkspace
-```
-
-Please note that if your installation fails, it may be because you are installing with a version of Git lower than CocoaPods is expecting. Please ensure that you are running Git >= **1.8.0** by executing `git --version`. You can get a full picture of the installation details by executing `pod install --verbose`.
-
 ### Manual Install
 
-All you need to do is drop `MLImageCrop` files into your project, and add `#include "MLImageCropDemo.h"` to the top of classes that will use it.
+All you need to do is drop `MLImageCrop` files into your project, and add `#include "MLImageCropController.h"` to the top of classes that will use it.
 
 ## Contact
 
