@@ -9,6 +9,7 @@
 #import "MLImageCropController.h"
 #import "MLRectModifier.h"
 #import "MLShadeView.h"
+#import <objc/runtime.h>
 
 const CGFloat BUTTON_HEIGHT = 54;
 
@@ -178,7 +179,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     // [_modifiers removeAllObjects];
     CGRect imageFrame = _imageView.frame;
     for (UITouch *touch in touches) {
-        CGPoint touchPoint = [touch preciseLocationInView:self.view];
+        CGPoint touchPoint = [self getLocation:touch InView:self.view];
         MLRectModifier *modifier = [self getModifier:imageFrame byPoint:touchPoint];
         NSValue *key = [NSValue valueWithNonretainedObject:touches];
         _modifiers[key] = modifier;
@@ -197,7 +198,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 
     @synchronized(self) {
         for (UITouch *touch in event.allTouches) {
-            CGPoint touchPoint = [touch preciseLocationInView:self.view];
+            CGPoint touchPoint = [self getLocation:touch InView:self.view];
             NSValue *key = [NSValue valueWithNonretainedObject:touch];
             MLRectModifier *modifier = [_modifiers objectForKey:key];
             if (!modifier) {
@@ -373,4 +374,25 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     return croppedImage;
 }
 
+- (CGPoint)getLocation:(UITouch *)touch InView:(nullable UIView *)view {
+    return [touch preciseLocationInView:self.view];
+}
+
+// due to preciseLocationInView is only works after 9.1, so make locationInview instead
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_9_1
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if ([UIDevice currentDevice].systemVersion.floatValue < 9.1f) {
+            Method oriMethod = class_getInstanceMethod(self, @selector(getLocation:InView:));
+            Method newMethod = class_getInstanceMethod(self, @selector(getLocation_8:InView:));
+            method_exchangeImplementations(oriMethod, newMethod);
+        }
+    });
+}
+
+- (CGPoint)getLocation_8:(UITouch *)touch InView:(nullable UIView *)view {
+    return [touch locationInView:self.view];
+}
+#endif
 @end
