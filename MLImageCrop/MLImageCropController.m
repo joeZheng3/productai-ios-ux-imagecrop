@@ -74,10 +74,13 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 
 - (void)viewDidLoad_backButton {
     _backBtn = [[UIButton alloc] init];
-    _backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [_backBtn setTitle:@"<" forState:UIControlStateNormal];
-    _backBtn.titleLabel.font = [UIFont systemFontOfSize:30];
-    [_backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _backBtn.frame = CGRectMake(10, 18, 38, 38);
+    [_backBtn setTitle:@"◃" forState:UIControlStateNormal];
+    _backBtn.contentEdgeInsets = UIEdgeInsetsMake(1, 0, 0, 6);
+    [_backBtn setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.1]];
+    [_backBtn.layer setCornerRadius:19];
+    _backBtn.titleLabel.font = [UIFont systemFontOfSize:26];
+    [_backBtn setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.5] forState:UIControlStateNormal];
     [_backBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_backBtn];
 }
