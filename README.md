@@ -31,8 +31,8 @@ All you need to do is drop `MLImageCrop` files into your project, and add `#incl
 
 ## Contact
 
-- https://github.com/malongtech/MLImageCrop
-- wanghaihan@live.com
+- https://github.com/MalongTech/MLImageCrop
+- jason@malongtech.cn
 
 ## License
 
