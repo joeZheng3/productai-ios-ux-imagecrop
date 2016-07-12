@@ -70,6 +70,8 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
                         forState:UIControlStateHighlighted];
     [_doneBtn addTarget:self action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_doneBtn];
+    
+    _doneBtn.hidden = _hideDoneButton;
 }
 
 - (void)viewDidLoad_backButton {
@@ -83,6 +85,8 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     [_backBtn setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.7] forState:UIControlStateNormal];
     [_backBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_backBtn];
+    
+    _backBtn.hidden = _hideBackButton;
 }
 
 - (void)viewDidLoad {
@@ -117,6 +121,9 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     self.view.frame = viewFrame;
     _shadeView.frame =
         CGRectMake(viewFrame.origin.x, viewFrame.origin.y, viewFrame.size.width, viewFrame.size.height - BUTTON_HEIGHT);
+    if (_hideDoneButton) {
+        _shadeView.frame = CGRectMake(viewFrame.origin.x, viewFrame.origin.y, viewFrame.size.width, viewFrame.size.height);
+    }
     _doneBtn.frame =
         CGRectMake(0, viewFrame.origin.y + viewFrame.size.height - BUTTON_HEIGHT, viewFrame.size.width, BUTTON_HEIGHT);
     if (_customView) {
@@ -324,6 +331,9 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 - (CGRect)calculateImageFrameAndSetScale {
     CGFloat frameWidth = self.view.frame.size.width - _imageMargin.left - _imageMargin.right;
     CGFloat frameHeight = self.view.frame.size.height - BUTTON_HEIGHT - _imageMargin.top - _imageMargin.bottom;
+    if (_hideDoneButton) {
+        frameHeight = self.view.frame.size.height - _imageMargin.top - _imageMargin.bottom;
+    }
     CGFloat imageWidth = _image.size.width;
     CGFloat imageHeight = _image.size.height;
     BOOL isPortrait = imageHeight / frameHeight > imageWidth / frameWidth;

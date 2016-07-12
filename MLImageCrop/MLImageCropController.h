@@ -88,6 +88,9 @@
 @property (nonatomic, strong, readonly) UIImageView *imageView;
 @property (nonatomic, strong, readonly) MLShadeView *shadeView;
 
+@property (assign, nonatomic) BOOL hideBackButton;
+@property (assign, nonatomic) BOOL hideDoneButton;
+
 /**
  *  init
  *
