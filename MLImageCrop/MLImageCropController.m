@@ -91,6 +91,10 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initSubviews];
+}
+
+- (void)initSubviews {
     self.view.multipleTouchEnabled = YES;
     self.view.backgroundColor = [UIColor blackColor];
     [self viewDidLoad_imageView];
@@ -149,11 +153,16 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self setupSubviews];
+}
+
+- (void)setupSubviews {
     // views
     [self viewWillAppear_views];
     // crop area
     [self viewWillAppear_cropAreaInView];
 }
+
 - (MLRectModifier *)getModifier:(CGRect)imageFrame byPoint:(CGPoint)point {
     if ([MLRectModifier_LeftTop isHit:_cropAreaInView byTouchLocation:point]) {
         return [[MLRectModifier_LeftTop alloc] initWithAvailableArea:imageFrame startPoint:point];

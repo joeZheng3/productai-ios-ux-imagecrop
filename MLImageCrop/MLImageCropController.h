@@ -99,4 +99,9 @@
  *  @return
  */
 - (id)initWithImage:(UIImage *)image;
+
+// support when only use MLImageCropController.view
+- (void)initSubviews;
+- (void)setupSubviews;
+
 @end
