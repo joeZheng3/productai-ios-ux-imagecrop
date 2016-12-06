@@ -31,7 +31,7 @@ All you need to do is drop `MLImageCrop` files into your project, and add `#incl
 
 ## Contact
 
-- https://github.com/MalongTech/MLImageCrop
+- https://github.com/MalongTech/productai-ios-ux-imagecrop
 - jason@malongtech.cn
 
 ## License
