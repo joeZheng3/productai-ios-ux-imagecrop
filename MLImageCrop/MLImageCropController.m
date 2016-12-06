@@ -31,7 +31,7 @@ typedef CGRect (^ChangeReckBlock)(CGRect rect, CGPoint translation);
     if (self) {
         _buttonTitleColor = [UIColor blackColor];
         _buttonBackgroundColor = [UIColor colorWithRed:0.98 green:0.87 blue:0.2 alpha:1];
-        _buttonText = @"确定";
+        _buttonText = @"OK";
         _imageView = [[UIImageView alloc] init];
         _modifiers = [[NSMutableDictionary alloc] init];
         _shadeView = [[MLShadeView alloc] init];
